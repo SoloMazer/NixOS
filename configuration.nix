@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports =
@@ -63,6 +63,14 @@
     yelp
   ]);
 
+  # Enabling Cosmic Desktop
+  services.desktopManager.cosmic.enable = true;
+  environment.cosmic.excludePackages = with pkgs; [
+    cosmic-player
+    cosmic-term
+    cosmic-store
+  ];
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -103,9 +111,7 @@
   environment.systemPackages = with pkgs; [
     fzf
     ripgrep
-    tree
     fd
-    zoxide
     helix
   ];
 
