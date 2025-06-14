@@ -55,6 +55,13 @@
     gnome-weather
     gnome-maps
     epiphany
+    geary
+    decibels
+    snapshot
+    gnome-characters
+    file-roller
+    gnome-font-viewer
+    gnome-music
     totem
     simple-scan
     gnome-connections
@@ -95,7 +102,6 @@
   };
 
   # Enable Essential Programs
-  programs.firefox.enable = true;
   programs.fish.enable = true;
   programs.git.enable = true;
   programs.nh.enable = true;
@@ -109,6 +115,7 @@
   # Packages to be installed on the base system
   environment.systemPackages = with pkgs; [
     fzf
+    librewolf
     ripgrep
     fd
     helix
