@@ -5,6 +5,11 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./system/garbageCollect.nix
+      ./system/autoUpgrade.nix
+      ./system/autoOptimze.nix
+      ./system/gnome.nix
+      ./system/cosmic.nix
     ];
 
   # Bootloader.
@@ -45,38 +50,6 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-tour
-    gnome-photos
-    gnome-contacts
-    gnome-weather
-    gnome-maps
-    epiphany
-    geary
-    decibels
-    snapshot
-    gnome-characters
-    file-roller
-    gnome-font-viewer
-    gnome-music
-    totem
-    simple-scan
-    gnome-connections
-    evince
-    yelp
-  ]);
-
-  # Enabling Cosmic Desktop
-  services.desktopManager.cosmic.enable = true;
-  environment.cosmic.excludePackages = with pkgs; [
-    cosmic-player
-    cosmic-term
-    cosmic-store
-  ];
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -101,10 +74,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  # Enable Essential Programs
-  programs.fish.enable = true;
-  programs.git.enable = true;
-
   # Enable experimental nix command and flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -120,34 +89,9 @@
     helix
   ];
 
-  # Enable Automatic Garbage Collection
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    persistent = true;
-    randomizedDelaySec = "45min";
-  };
-
-  # Enable Automatic store Optimization
-  nix.optimise = {
-    automatic = true;
-    dates = "weekly";
-    persistent = true;
-    randomizedDelaySec = "45min";
-  };
-
-  # Enable autoUpgrade
-  system.autoUpgrade = {
-    enable = true;
-    flake = "path:/home/solomazer/.config/nixos";
-    flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
-    dates = "weekly";
-    operation = "boot";
-    persistent = true;
-    randomizedDelaySec = "45min";
-    fixedRandomDelay = true;
-    allowReboot = false;
-  };
+  # Enable Essential Programs
+  programs.fish.enable = true;
+  programs.git.enable = true;
 
   system.stateVersion = "25.11";
 }
