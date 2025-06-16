@@ -15,7 +15,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.initrd.luks.devices."luks-ff42987a-cfcc-4861-b70a-e80735efba68".device = "/dev/disk/by-uuid/ff42987a-cfcc-4861-b70a-e80735efba68";
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "voidheart"; # Define your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -104,7 +104,6 @@
   # Enable Essential Programs
   programs.fish.enable = true;
   programs.git.enable = true;
-  programs.nh.enable = true;
 
   # Enable experimental nix command and flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
