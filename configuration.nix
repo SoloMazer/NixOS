@@ -28,6 +28,7 @@
   # Enable graphics
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
+  hardware.sensor.iio.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -87,6 +88,7 @@
     ripgrep
     fd
     helix
+    home-manager
   ];
 
   # Enable Essential Programs
