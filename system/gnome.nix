@@ -1,7 +1,7 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
-  environment.gnome.excludePackages = (with pkgs; [
+  environment.gnome.excludePackages = with pkgs; [
     gnome-tour
     gnome-photos
     gnome-contacts
@@ -20,5 +20,5 @@
     gnome-connections
     evince
     yelp
-  ]);
+  ];
 }

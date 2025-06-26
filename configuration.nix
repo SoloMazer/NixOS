@@ -1,16 +1,13 @@
-{ pkgs, ... }:
-
-{
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./system/garbageCollect.nix
-      ./system/autoUpgrade.nix
-      ./system/autoOptimze.nix
-      ./system/gnome.nix
-      ./system/cosmic.nix
-    ];
+{pkgs, ...}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./system/garbageCollect.nix
+    ./system/autoUpgrade.nix
+    ./system/autoOptimze.nix
+    ./system/gnome.nix
+    ./system/cosmic.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -72,11 +69,11 @@
     shell = pkgs.fish;
     isNormalUser = true;
     description = "SoloMazer";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
   };
 
   # Enable experimental nix command and flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
