@@ -85,7 +85,6 @@
     ripgrep
     fd
     helix
-    home-manager
   ];
 
   # Enable Essential Programs
