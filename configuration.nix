@@ -91,5 +91,11 @@
   programs.fish.enable = true;
   programs.git.enable = true;
 
+  # Setup environment variables
+  environment.sessionVariables = {
+    EDITOR = "hx";
+    VISUAL = "hx";
+  };
+
   system.stateVersion = "25.11";
 }
