@@ -4,13 +4,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    ghostty.url = "github:ghostty-org/ghostty"; # Use project flake directly for rapid bugfixes
   };
 
-  outputs = {
-    nixpkgs,
-    nixpkgs-stable,
-    ...
-  } @ inputs: {
+  outputs = {nixpkgs, ...} @ inputs: {
     nixosConfigurations."voidheart" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {inherit inputs;};

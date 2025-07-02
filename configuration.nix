@@ -1,6 +1,9 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./system/garbageCollect.nix
     ./system/autoUpgrade.nix
@@ -82,6 +85,7 @@
   environment.systemPackages = with pkgs; [
     fzf
     librewolf
+    inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
     ripgrep
     fd
     helix
@@ -93,6 +97,8 @@
 
   # Setup environment variables
   environment.sessionVariables = {
+    BROWSER = "librewolf";
+    TERMINAL = "ghostty";
     EDITOR = "hx";
     VISUAL = "hx";
   };
