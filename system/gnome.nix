@@ -20,5 +20,6 @@
     gnome-connections
     evince
     yelp
+    gnome-system-monitor
   ];
 }

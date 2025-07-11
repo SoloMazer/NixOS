@@ -1,13 +1,6 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
-    ./system/garbageCollect.nix
-    ./system/autoUpgrade.nix
-    ./system/autoOptimze.nix
     ./system/gnome.nix
     ./system/cosmic.nix
   ];
@@ -85,22 +78,34 @@
   environment.systemPackages = with pkgs; [
     fzf
     librewolf
-    inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
     ripgrep
     fd
     helix
+    zenity
+    protonvpn-gui
   ];
 
   # Enable Essential Programs
   programs.fish.enable = true;
   programs.git.enable = true;
+  programs.nh = {
+    enable = true;
+    clean = {
+      enable = true;
+      dates = "weekly";
+      extraArgs = "--keep-since 7d";
+    };
+  };
+
+  # Enable Essential services
+  # services.cloudflare-warp.enable = true;
 
   # Setup environment variables
   environment.sessionVariables = {
-    BROWSER = "librewolf";
-    TERMINAL = "ghostty";
     EDITOR = "hx";
     VISUAL = "hx";
+    NH_OS_FLAKE = "/home/solomazer/.config/nixos";
+    NH_HOME_FLAKE = "/home/solomazer/.config/home-manager";
   };
 
   system.stateVersion = "25.11";
