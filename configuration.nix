@@ -6,8 +6,14 @@
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot = {
+    enable = true;
+    netbootxyz.enable = true;
+    memtest86.enable = true;
+    edk2-uefi-shell.enable = true;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = 10;
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -28,7 +34,6 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_IN";
     LC_IDENTIFICATION = "en_IN";
